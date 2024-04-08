@@ -29,3 +29,14 @@ export const TaskStyle = styled.div`
     color: white;
   }
 `;
+
+export const RemoveTask = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  position: absolute;
+  right: 2.5rem;
+  top: 2rem;
+  cursor: pointer;
+`;

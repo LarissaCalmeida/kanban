@@ -5,37 +5,19 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-
-    button {
-      /* margin-top: 1.5rem; */
-    }
   }
 
-  .containerSubstasks {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-
-    li {
-      color: #776a9e;
-      font-size: 0.8rem;
-      font-weight: 700;
-      width: 100%;
-    }
-  }
-
-  h2.label {
+  h2 {
     font-size: 1rem;
-    font-weight: 700;
     color: #fff;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2rem;
   }
 
   .buttons {
     display: flex;
     gap: 1rem;
-    margin-top: 1rem;
 
     @media (max-width: 545px) {
       flex-direction: column-reverse;
@@ -50,4 +32,6 @@ export const BtnRemove = styled.span`
   content: "x";
   cursor: pointer;
   padding: 10px;
+  /* margin-bottom: calc((38px - 1rem) / 2); */
+  /* padding: 1rem; */
 `;

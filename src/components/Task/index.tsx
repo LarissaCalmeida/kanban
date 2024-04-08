@@ -1,6 +1,6 @@
-import React, { HTMLAttributes } from "react";
+import React, { Dispatch, HTMLAttributes, SetStateAction } from "react";
 import styles from "./styles.module.css";
-import { TaskStyle } from "./styles";
+import { RemoveTask, TaskStyle } from "./styles";
 
 interface ISubstasks {
   name: string;

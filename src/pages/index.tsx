@@ -14,6 +14,7 @@ import {
 } from "@/styles/home";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
+import RemoveTask from "@/components/Task/RemoveTask";
 
 interface ITask {
   name: string;
@@ -95,6 +96,11 @@ export default function Home() {
   const [currentTask, setCurrentTask] = useState<ITask>({} as ITask);
   const [currentStatus, setCurrentStatus] = useState<string>("");
   const [currentIndex, setCurrentIndex] = useState<number>(-1);
+  const [currentTaskToRemove, setCurrentTaskToRemove] = useState<ITask>(
+    {} as ITask
+  );
+  const [openModalDeleteTask, setOpenModalDeleteTask] =
+    useState<boolean>(false);
 
   const handleAddColumn = useCallback(
     (name: string, color: string) => {
@@ -169,6 +175,21 @@ export default function Home() {
     setColumnsTask([...columnsTask]);
 
     setOpenModalEditTask(false);
+  };
+
+  const handleOpenRemoveTask = (taskToRemove: ITask) => {
+    setCurrentTaskToRemove(taskToRemove);
+    setOpenModalDeleteTask(true);
+    setOpenModalEditTask(false);
+  };
+
+  const handleRemoveTask = () => {
+    const _idxCol = columnsTask.findIndex(
+      (column) => column.name === currentStatus
+    );
+
+    columnsTask[_idxCol].task.splice(currentIndex, 1);
+    setOpenModalDeleteTask(false);
   };
 
   const onDropTask = (e: any) => {
@@ -407,6 +428,15 @@ export default function Home() {
             optionsStatus={optionsStatus}
             currentStatus={currentStatus}
             task={currentTask}
+            handleOpenRemoveTask={handleOpenRemoveTask}
+          />
+        )}
+
+        {openModalDeleteTask && (
+          <RemoveTask
+            setOpenModal={setOpenModalDeleteTask}
+            task={currentTaskToRemove}
+            handleRemoveTask={handleRemoveTask}
           />
         )}
         {/* End modals */}

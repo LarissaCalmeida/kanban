@@ -39,6 +39,7 @@ interface IProps {
   currentStatus: string;
   task: ITask;
   handleEditTasks: (task: ITask, column: string) => void;
+  handleOpenRemoveTask: (task: ITask) => void;
 }
 
 interface ISubstasks {
@@ -57,6 +58,7 @@ const EditTask: React.FC<IProps> = ({
   optionsStatus,
   handleEditTasks,
   currentStatus,
+  handleOpenRemoveTask,
   task,
 }) => {
   const {
@@ -127,12 +129,21 @@ const EditTask: React.FC<IProps> = ({
             defaultValue={currentStatus}
           />
 
-          <Button
-            label="Save alterations"
-            color="primary"
-            type="button"
-            onClick={handleSubmit(onSubmit)}
-          />
+          <div className="buttons">
+            <Button
+              label="Remove task"
+              color="secondary"
+              type="button"
+              // onClick={handleSubmit(onSubmit)}
+              onClick={() => handleOpenRemoveTask(task)}
+            />
+            <Button
+              label="Save alterations"
+              color="primary"
+              type="button"
+              onClick={handleSubmit(onSubmit)}
+            />
+          </div>
         </form>
       </Container>
     </Modal>
