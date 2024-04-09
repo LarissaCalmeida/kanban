@@ -1,11 +1,15 @@
 import Button from "@/components/Form/Button";
 import { Container, ContainerNavbar, Navbar } from "@/styles/404";
+import Head from "next/head";
 import React from "react";
 
 const Page404 = () => {
   return (
     <Container>
       <ContainerNavbar>
+        <Head>
+          <title>Kanban | 404</title>
+        </Head>
         <Navbar>
           <img src="/logo.png" alt="logo" />
         </Navbar>
@@ -17,7 +21,7 @@ const Page404 = () => {
         <div className="container-text">
           <h1>404</h1>
 
-          <span>Oops, it looks like this page doesn't exist</span>
+          <span>{`Oops, it looks like this page doesn't exist`}</span>
           <div>
             <Button type="button" color="primary" label="Back to main" />
           </div>
