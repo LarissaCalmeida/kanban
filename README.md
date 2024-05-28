@@ -1,40 +1,103 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Kanban
 
-## Getting Started
+Kanban é um projeto desenvolvido para a matéria Técnicas de Programação WEB da Faculdade, que foi baseado no desafio do site Front-End Mentor. Ele é um gerenciamento de tarefas para ajudar ao desenvolvedor e demais áreas, a gerenciar suas tarefas e auxiliando a ter noção de tempo e estimativa para finalização de um projeto.  
 
-First, run the development server:
+## Tecnologias e Pré-Requisitos 
+
+- NodeJs
+- Next.js
+- Styled Components
+- React Hook Form
+
+
+## 📁 Estrutura do Projeto
+
+<aside>
+
+```
+├── public (imagens e icones)
+│   ├── *.png
+│   ├── *.svg
+│   ├── *.webp
+├── src
+│   ├── components (Componentes das páginas)
+│   │   ├── [NameComponent]
+│   │   |   ├── index.tsx
+│   │   |   ├── styles.ts
+│   ├── pages (Páginas)
+│   │   ├── api (Requisições à API - Backend)
+│   │   │   ├── index.tsx
+│   │   |   ├── [name_file].tsx
+│   │   ├── [name_route_page]
+│   │   |   ├── index.tsx
+│   │   ├── index.tsx
+│   │   ├── _app.tsx 
+│   │   ├── _document.tsx 
+│   │   ├── 404.tsx 
+│   ├── styles (Estilização)
+│   │   ├── [name_route_page].tsx
+```
+</aside>
+
+## Clonando Repositório
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+$ git clone git@github.com:LarissaCalmeida/kanban.git
+$ cd kanban
+```
+## Instalação das dependências
+
+Instale as dependências digitando a linha de comando abaixo em seu terminal:
+```bash
+$ npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Rodar
+Rode o projeto digitando a linha de comando abaixo em seu terminal:
+```bash
+$ npm run dev
+```
+## Funcionalidades 
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+ - [x] Criação de Novas Colunas
+ - [x] Tarefas
+	 - [x] Adicionar
+	 - [x] Remover
+	 - [x] Editar
+	 - [x] Atualizar 
+	 - [x] Adicionar subtarefas
+	 - [x] Atualizar subtarefas
+ - [x] Drag and Drop das tarefas (possível arrastar entre as colunas)
+ - [x] Responsividade
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+ 
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Bugs e Melhorias para a versão atual
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [ ] Autenticação
+	- [ ] Cadastro
+	- [ ] Login
+	- [ ] Resetar senha
+- [ ] Gerenciar Boards
+	- [ ] Cadastrar
+	- [ ] Atualizar 
+	- [ ] Excluir
+	- [ ] Listar
+	- [ ] Visualizar
+- [ ] Gerenciar Colunas
+	- [x] Cadastrar
+	- [ ] Excluir
+	- [ ] Atualizar
+	- [x] Visualizar  
+- [ ] Ocultar/Mostrar Sidebar
+- [ ] Integração com o Back-End
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Bônus para a próxima versão 
+- [ ] Modo Light/Dark
+- [ ] Modo Team
+	- [ ] Adicionar user
+	- [ ] Adicionar permissões ao user
+	- [ ] Atualizar user
+	- [ ] Remover user
+	- [ ] Listar users
+	- [ ] Mostrar quem criou a task
