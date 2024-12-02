@@ -15,6 +15,8 @@ import {
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import RemoveTask from "@/components/Task/RemoveTask";
+import { useRouter } from "next/router";
+import Loading from "@/components/Loading";
 
 interface ITask {
   name: string;
@@ -48,6 +50,9 @@ interface IFormDataTask {
 }
 
 export default function Home() {
+  const [name, setName] = useState("");
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
   const [openModalAddNewTask, setOpenModalAddNewTask] =
     useState<boolean>(false);
   const [openModalEditTask, setOpenModalEditTask] = useState<boolean>(false);
@@ -112,6 +117,8 @@ export default function Home() {
 
       columnsTask.push(newColumn);
       setColumnsTask([...columnsTask]);
+
+      localStorage.setItem("kanban", JSON.stringify(columnsTask));
     },
 
     [columnsTask]
@@ -134,6 +141,8 @@ export default function Home() {
 
     setColumnsTask([...columnsTask]);
 
+    localStorage.setItem("kanban", JSON.stringify(columnsTask));
+
     setOpenModalAddNewTask(false);
   };
 
@@ -151,6 +160,28 @@ export default function Home() {
 
     setOptionsStatus(_arrayStatus);
   }, [columnsTask]);
+
+  useEffect(() => {
+    const nameKanban = localStorage.getItem("name-kanban");
+
+    if (!nameKanban) {
+      router.replace("/");
+    } else {
+      setName(nameKanban);
+    }
+
+    let columns: any = localStorage.getItem("kanban");
+
+    columns = columns != null ? JSON.parse(columns) : [];
+
+    setColumnsTask([...columns]);
+
+    localStorage.setItem("kanban", JSON.stringify(columns));
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
 
   const handleOpenTask = (task: ITask, status: string, index: number) => {
     setCurrentStatus(status);
@@ -174,6 +205,7 @@ export default function Home() {
 
     setColumnsTask([...columnsTask]);
 
+    localStorage.setItem("kanban", JSON.stringify(columnsTask));
     setOpenModalEditTask(false);
   };
 
@@ -189,19 +221,17 @@ export default function Home() {
     );
 
     columnsTask[_idxCol].task.splice(currentIndex, 1);
+
+    localStorage.setItem("kanban", JSON.stringify(columnsTask));
     setOpenModalDeleteTask(false);
   };
 
   const onDropTask = (e: any) => {
     e.preventDefault();
     const data = e.dataTransfer.getData("text");
-    // e.target.appendChild(document.getElementById(data));
-    console.log(data);
-    console.log(e);
   };
 
   const onDragTask = (e: any) => {
-    console.log(e);
     e.dataTransfer.setData("text", e.target.id);
   };
 
@@ -264,6 +294,14 @@ export default function Home() {
     return closestTask;
   };
 
+  const signOut = () => {
+    localStorage.removeItem("kanban");
+    localStorage.removeItem("name-kanban");
+
+    router.replace("/auth/name");
+  };
+
+  if (loading) return <Loading />;
   return (
     <>
       <Head>
@@ -284,21 +322,25 @@ export default function Home() {
                   <div>
                     <img src="/no-photo.svg" alt="" />
                   </div>
-                  <span>Plataform Launch</span>
+                  <span>{name}</span>
                 </li>
 
-                <li>
+                {/* <li>
                   <div>
                     <img src="/no-photo.svg" alt="" />
                   </div>
                   <span>Marketing Plan</span>
-                </li>
+                </li> */}
               </ul>
             </div>
-
+            {/* 
             <Link href="/auth/login" className="out">
               Deslogar
-            </Link>
+            </Link> */}
+
+            <button className="out" onClick={() => signOut()}>
+              Sign Out and Remove All Info
+            </button>
           </Sidebar>
         </ContainerSidebar>
         <Dashboard>
@@ -306,7 +348,7 @@ export default function Home() {
             <Navbar openMenu={openMenuMobile}>
               <div className="board">
                 <img src="/favicon.png" alt="Logo" />
-                <h2>Platform Launch</h2>
+                <h2>{name}</h2>
                 <div
                   className="arrow-menu-mobile"
                   onClick={() => {
@@ -323,6 +365,7 @@ export default function Home() {
                   setOpenModalAddNewTask(true);
                 }}
                 className="desktop"
+                disabled={columnsTask.length === 0}
               >
                 + Add new task
               </button>
@@ -346,17 +389,21 @@ export default function Home() {
                     <span>Plataform Launch</span>
                   </li>
 
-                  <li>
+                  {/* <li>
                     <div>
                       <img src="/no-photo.svg" alt="" />
                     </div>
                     <span>Marketing Plan</span>
-                  </li>
+                  </li> */}
                 </ul>
 
-                <Link href="/auth/login" className="out">
+                {/* <Link href="/auth/login" className="out">
                   Deslogar
-                </Link>
+                </Link> */}
+
+                <button className="out" onClick={() => signOut()}>
+                  Sign Out and Remove All Info
+                </button>
               </div>
             </Navbar>
           </ContainerNavbar>

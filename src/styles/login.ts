@@ -80,6 +80,7 @@ export const Form = styled.div`
   .formInput {
     display: flex;
     flex-direction: column;
+    margin-bottom: 2rem;
 
     @media (max-width: 1024px) {
       width: 100%;

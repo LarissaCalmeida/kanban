@@ -85,6 +85,10 @@ export const Sidebar = styled.aside`
 
   .out {
     color: #eaeaea;
+    background-color: transparent !important;
+    outline: none;
+    border: none;
+    cursor: pointer;
   }
 `;
 
@@ -205,6 +209,10 @@ export const Navbar = styled.nav<INavBar>`
         color: #eaeaea;
         margin-top: 2rem;
         display: block;
+        background-color: transparent !important;
+        outline: none;
+        border: none;
+        cursor: pointer;
       }
     }
   }
